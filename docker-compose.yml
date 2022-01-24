@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  db:
+    container_name: mysql-standalone
+    image: mysql:5.7
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: 'test'
+      MYSQL_USER: 'sa'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+
+  candlestick:
+    container_name: candlestick
+    image: candlestick:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '9000:9000'
+    depends_on:
+      - db
+    restart: on-failure

@@ -1,0 +1,7 @@
+.gradle/
+.idea/
+gradle
+build/
+
+.DS_Store
+partner-service-1.0.1-all.jar
